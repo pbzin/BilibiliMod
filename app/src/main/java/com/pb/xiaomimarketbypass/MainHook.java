@@ -107,6 +107,9 @@ public class MainHook implements IXposedHookLoadPackage {
     }
 
     private static Class<?> getMiuiStubClass(String className) {
+        if ("android.provider.MiuiSettings$System".equals(className)) {
+            return android.provider.MiuiSettings.System.class;
+        }
         if ("miui.os.Build".equals(className)) {
             return miui.os.Build.class;
         }
@@ -152,6 +155,7 @@ public class MainHook implements IXposedHookLoadPackage {
     }
 
     private static void hookXiaomiMarket(ClassLoader classLoader) {
+        hookMissingClasses(classLoader);
         hookMissingMiuiPackages();
         hookMiuiBuild(classLoader);
         hookUiUtils(classLoader);
