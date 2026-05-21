@@ -46,6 +46,8 @@ public class MainHook implements IXposedHookLoadPackage {
     private static volatile long lastBilibiliActivityRefreshMs;
     private static final Map<String, String> bilibiliCategoryTitleCache = new ConcurrentHashMap<>();
     private static final Map<String, String> bilibiliCategoryTitleTextCache = new ConcurrentHashMap<>();
+    private static final Map<String, String> bilibiliAuthorTitleCache = new ConcurrentHashMap<>();
+    private static final Map<String, String> bilibiliAuthorTitleTextCache = new ConcurrentHashMap<>();
     private static final String BILIBILI_TRANSLATION_PENDING = "\u0000pending";
 
     @Override
@@ -86,6 +88,7 @@ public class MainHook implements IXposedHookLoadPackage {
         hookBilibiliSubtitlePreferences(classLoader);
         hookBilibiliTranslationDiagnostics(classLoader);
         hookBilibiliCategoryTitleTranslation(classLoader);
+        hookBilibiliAuthorSpaceTitleTranslation(classLoader);
         hookBilibiliActivityRefresh();
     }
 
@@ -289,6 +292,64 @@ public class MainHook implements IXposedHookLoadPackage {
         }
     }
 
+    private static void hookBilibiliAuthorSpaceTitleTranslation(ClassLoader classLoader) {
+        try {
+            Class<?> spaceVideo = XposedHelpers.findClass(
+                    "com.bilibili.app.authorspace.api.BiliSpaceVideo", classLoader);
+            XposedHelpers.findAndHookMethod(spaceVideo, "displayedTitle", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) {
+                    String title = getStringField(param.thisObject, "title");
+                    if (isEmpty(title) || !containsCjk(title)) {
+                        return;
+                    }
+
+                    String businessId = getStringField(param.thisObject, "param");
+                    if (isEmpty(businessId)) {
+                        log("Bilibili author title skip: missing businessId title=" + title);
+                        return;
+                    }
+
+                    String key = businessId + "|" + title;
+                    String cached = bilibiliAuthorTitleCache.get(key);
+                    if (isEmpty(cached) || BILIBILI_TRANSLATION_PENDING.equals(cached)) {
+                        cached = bilibiliAuthorTitleTextCache.get(title);
+                    }
+                    if (!isEmpty(cached) && !BILIBILI_TRANSLATION_PENDING.equals(cached)) {
+                        applyBilibiliAuthorTitleTranslation(param.thisObject, cached);
+                        param.setResult(cached);
+                        return;
+                    }
+
+                    if (cached == null) {
+                        try {
+                            String translated = requestBilibiliTitleTranslation(
+                                    classLoader, businessId, title, "main.space.0.0");
+                            if (!isEmpty(translated) && !translated.equals(title)) {
+                                bilibiliAuthorTitleCache.put(key, translated);
+                                bilibiliAuthorTitleTextCache.put(title, translated);
+                                applyBilibiliAuthorTitleTranslation(param.thisObject, translated);
+                                param.setResult(translated);
+                                log("Bilibili author title translated aid=" + businessId
+                                        + " title=" + title + " -> " + translated);
+                                return;
+                            }
+                        } catch (Throwable t) {
+                            log("Bilibili author title translation failed aid=" + businessId
+                                    + " title=" + title, t);
+                        }
+
+                        bilibiliAuthorTitleCache.put(key, BILIBILI_TRANSLATION_PENDING);
+                        translateBilibiliAuthorTitleAsync(classLoader, param.thisObject, key, businessId, title);
+                    }
+                }
+            });
+            log("hooked Bilibili author space title translation");
+        } catch (Throwable t) {
+            log("Bilibili author space title translation hook failed", t);
+        }
+    }
+
     private static void translateBilibiliCategoryTitleAsync(
             ClassLoader classLoader, Object card, String key, long aid, String title) {
         new Thread(() -> {
@@ -312,6 +373,31 @@ public class MainHook implements IXposedHookLoadPackage {
                 log("Bilibili category title translation failed aid=" + aid + " title=" + title, t);
             }
         }, "bili-category-title-translate").start();
+    }
+
+    private static void translateBilibiliAuthorTitleAsync(
+            ClassLoader classLoader, Object video, String key, String businessId, String title) {
+        new Thread(() -> {
+            try {
+                String translated = requestBilibiliTitleTranslation(
+                        classLoader, businessId, title, "main.space.0.0");
+                if (isEmpty(translated) || translated.equals(title)) {
+                    bilibiliAuthorTitleCache.remove(key);
+                    log("Bilibili author title translation empty aid=" + businessId + " title=" + title);
+                    return;
+                }
+
+                bilibiliAuthorTitleCache.put(key, translated);
+                bilibiliAuthorTitleTextCache.put(title, translated);
+                applyBilibiliAuthorTitleTranslation(video, translated);
+                log("Bilibili author title translated async aid=" + businessId
+                        + " title=" + title + " -> " + translated);
+            } catch (Throwable t) {
+                bilibiliAuthorTitleCache.remove(key);
+                log("Bilibili author title translation async failed aid=" + businessId
+                        + " title=" + title, t);
+            }
+        }, "bili-author-title-translate").start();
     }
 
     private static void hookBilibiliActivityRefresh() {
@@ -374,6 +460,11 @@ public class MainHook implements IXposedHookLoadPackage {
 
     private static String requestBilibiliTitleTranslation(ClassLoader classLoader, long aid, String title)
             throws Throwable {
+        return requestBilibiliTitleTranslation(classLoader, String.valueOf(aid), title, "tm.category.0.0");
+    }
+
+    private static String requestBilibiliTitleTranslation(
+            ClassLoader classLoader, String businessId, String title, String spmid) throws Throwable {
         Class<?> simpleReq = XposedHelpers.findClass(
                 "com.bapis.bilibili.app.translation.v1.TranslationSimpleReq", classLoader);
         Class<?> translationBusiness = XposedHelpers.findClass(
@@ -384,10 +475,10 @@ public class MainHook implements IXposedHookLoadPackage {
         Object builder = XposedHelpers.callStaticMethod(simpleReq, "newBuilder");
         Object arcBusiness = XposedHelpers.getStaticObjectField(translationBusiness, "TRANS_BIZ_ARC");
         XposedHelpers.callMethod(builder, "setBizType", arcBusiness);
-        XposedHelpers.callMethod(builder, "setBusinessId", String.valueOf(aid));
+        XposedHelpers.callMethod(builder, "setBusinessId", businessId);
         XposedHelpers.callMethod(builder, "addFields", "title");
         XposedHelpers.callMethod(builder, "addText", title);
-        XposedHelpers.callMethod(builder, "setSpmid", "tm.category.0.0");
+        XposedHelpers.callMethod(builder, "setSpmid", spmid);
 
         Object req = XposedHelpers.callMethod(builder, "build");
         Object moss = XposedHelpers.newInstance(translationMoss);
@@ -398,6 +489,15 @@ public class MainHook implements IXposedHookLoadPackage {
         }
         Object result = XposedHelpers.callMethod(reply, "getResults", 0);
         return (String) XposedHelpers.callMethod(result, "getTranslatedText");
+    }
+
+    private static void applyBilibiliAuthorTitleTranslation(Object video, String translated) {
+        try {
+            XposedHelpers.setObjectField(video, "translatedTitle", translated);
+            XposedHelpers.setObjectField(video, "translateStatus", "translated");
+        } catch (Throwable t) {
+            log("Bilibili author title field patch failed", t);
+        }
     }
 
     private static void forceBilibiliPreferredSubtitleLanguage(Object req) {
@@ -510,6 +610,15 @@ public class MainHook implements IXposedHookLoadPackage {
             return XposedHelpers.callMethod(receiver, methodName);
         } catch (Throwable ignored) {
             return "?";
+        }
+    }
+
+    private static String getStringField(Object receiver, String fieldName) {
+        try {
+            Object value = XposedHelpers.getObjectField(receiver, fieldName);
+            return value instanceof String ? (String) value : null;
+        } catch (Throwable ignored) {
+            return null;
         }
     }
 
