@@ -1,11 +1,11 @@
 # BilibiliMod
 
-Modulo LSPosed para ajustar o app Bilibili (`tv.danmaku.bili`).
+Modulo LSPosed para usuarios estrangeiros do Bilibili (`tv.danmaku.bili`). Ele forca o app a tratar a instalacao como versao/regiao CN e libera categorias de videos que ficam ocultas fora da China, parecido com o acesso pelo PC.
 
 ## Funcoes
 
-- Forca o `RegionManager` do Bilibili a tratar a regiao como China (`CN`).
-- Restaura o acesso ao menu de categorias pelo item `bilibili://main/top_category`.
+- Forca o Bilibili a tratar a regiao/versao como China (`CN`) mesmo para usuarios estrangeiros.
+- Restaura o acesso ao menu de categorias e a categorias de video ocultas no app mobile fora da China, similar ao Bilibili no PC.
 - Define preferencia de legenda para portugues quando o pedido de legenda nao traz idioma preferido.
 - Mostra diagnosticos de legendas e traducao no logcat com a tag `BilibiliMod`.
 - Traduz titulos de videos na pagina de categorias usando o endpoint interno `TranslationMoss` do proprio Bilibili.
