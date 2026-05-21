@@ -22,3 +22,9 @@ Modulo LSPosed para ajustar o app Bilibili (`tv.danmaku.bili`).
 - A traducao dos titulos da pagina de categorias e feita no caminho de renderizacao que funciona nessa tela Compose. Isso pode causar atraso inicial ao abrir uma categoria.
 - O modulo nao grava cache persistente de traducoes.
 - Evite escopar o Bilibili em outro modulo que tenha hooks iguais para nao duplicar comportamento.
+
+## Donate
+
+I do not have a stable income and I build this module for fun in my free time. If it helps you, any support keeps the project alive and means a lot.
+
+[![Donate](https://img.shields.io/badge/Donate-Support%20the%20project-ff69b4?style=for-the-badge)](https://github.com/pbzin)
