@@ -1,30 +1,33 @@
 # BilibiliMod
 
-Modulo LSPosed para usuarios estrangeiros do Bilibili (`tv.danmaku.bili`). Ele forca o app a tratar a instalacao como versao/regiao CN e libera categorias de videos que ficam ocultas fora da China, parecido com o acesso pelo PC.
+LSPosed module for foreign Bilibili users (`tv.danmaku.bili`).
 
-## Funcoes
+It forces Bilibili to treat the app as the CN version/region and unlocks hidden mobile video categories, similar to the category access available on PC.
 
-- Forca o Bilibili a tratar a regiao/versao como China (`CN`) mesmo para usuarios estrangeiros.
-- Restaura o acesso ao menu de categorias e a categorias de video ocultas no app mobile fora da China, similar ao Bilibili no PC.
-- Define preferencia de legenda para portugues quando o pedido de legenda nao traz idioma preferido.
-- Mostra diagnosticos de legendas e traducao no logcat com a tag `BilibiliMod`.
-- Traduz titulos de videos na pagina de categorias usando o endpoint interno `TranslationMoss` do proprio Bilibili.
+## Features
 
-## Uso
+- Forces Bilibili region/version behavior to China (`CN`) for foreign users.
+- Restores access to hidden video categories in the mobile app, similar to Bilibili on PC.
+- Opens the category menu through `bilibili://main/top_category`.
+- Sets Portuguese as the preferred subtitle language when Bilibili does not provide a preferred language.
+- Logs subtitle and translation diagnostics with the `BilibiliMod` logcat tag.
+- Translates video titles in category and author-space pages through Bilibili's internal `TranslationMoss` endpoint.
 
-1. Instale o APK do modulo.
-2. Ative o modulo no LSPosed.
-3. Coloque somente `tv.danmaku.bili` no escopo.
-4. Force o fechamento do Bilibili e abra novamente.
+## Usage
+
+1. Install the module APK.
+2. Enable the module in LSPosed.
+3. Select only `tv.danmaku.bili` as the module scope.
+4. Force close Bilibili and open it again.
 
 > [!IMPORTANT]
-> Na primeira abertura do Bilibili apos instalar/ativar o modulo, use uma VPN chinesa. Se o app for aberto sem VPN nessa primeira vez, ele pode ocultar as categorias e elas so voltam depois de limpar os dados do Bilibili.
+> On the first Bilibili launch after installing/enabling this module, use a Chinese VPN. If the app is opened without the VPN first, Bilibili may hide the categories and they usually return only after clearing Bilibili app data.
 
-## Observacoes
+## Notes
 
-- A traducao dos titulos da pagina de categorias e feita no caminho de renderizacao que funciona nessa tela Compose. Isso pode causar atraso inicial ao abrir uma categoria.
-- O modulo nao grava cache persistente de traducoes.
-- Evite escopar o Bilibili em outro modulo que tenha hooks iguais para nao duplicar comportamento.
+- Title translation on category pages runs through the render path used by that Compose screen, so the first category opening may have a short delay.
+- The module does not store a persistent translation cache.
+- Avoid scoping Bilibili into another module that hooks the same behavior, otherwise effects may be duplicated.
 
 ## Donate
 
