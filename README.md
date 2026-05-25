@@ -1,3 +1,5 @@
+[![Repo Views](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fpbzin%2FBilibiliMod&label=repo%20views&countColor=%230e75b6&style=flat)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2Fpbzin%2FBilibiliMod)
+
 # BilibiliMod
 
 LSPosed module for foreign Bilibili users (`tv.danmaku.bili`).
