@@ -53,10 +53,10 @@ It forces Bilibili to treat the app as the CN version/region and unlocks hidden 
   <br>
   <code>1GkpDZDHYov7WZLs54Nv19f2KUoZPcACs2</code>
   <br>
-<p>
+<p align="center">
   <img src="https://raw.githubusercontent.com/pbzin/pbzin/main/assets/bitcoin-qr.png" width="150" alt="Bitcoin donation QR code">
   <br><br>
-  <img src="https://img.shields.io/badge/Monero-FF6600?style=for-the-badge&logo=monero&logoColor=white" alt="Monero" height="30" align="absmiddle">
+  <img src="https://img.shields.io/badge/Monero-FF6600?style=for-the-badge&logo=monero&logoColor=white" alt="Monero" height="30">
   <br>
   <code>45YtYmxUeXeFdokKPG1KWtMFLByS8nwmtiJjEiZ9LfbkNaSUCvyWWAx3VmtDKKkxPJFdQLSXxodRWMt7EBu5TmA3Qi9dgwT</code>
   <br>
