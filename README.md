@@ -43,16 +43,16 @@ It forces Bilibili to treat the app as the CN version/region and unlocks hidden 
   <a href="https://github.com/sponsors/pbzin">
     <img src="https://img.shields.io/badge/Sponsor-💖-ea4aaa?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="GitHub Sponsors" height="38" align="absmiddle">
   </a>
-  <br><br>
-  <img src="https://img.shields.io/badge/Pix-⚡-32BCAD?style=for-the-badge&logo=pix&logoColor=white" alt="Pix" height="30" align="absmiddle">
-  <img src="assets/brasil-badge.png" alt="Brasil" height="30" align="absmiddle">
+<p align="center">
+  <img src="https://img.shields.io/badge/Pix-⚡-32BCAD?style=for-the-badge&logo=pix&logoColor=white" alt="Pix" height="30">
+  <img src="https://raw.githubusercontent.com/pbzin/pbzin/main/assets/brasil-badge.png" alt="Brasil" height="30">
   <br>
   <code>5198a8b3-6b89-4475-aec1-5adcfcfd12cf</code>
   <br><br>
-  <img src="https://img.shields.io/badge/Bitcoin-F7931A?style=for-the-badge&logo=bitcoin&logoColor=white" alt="Bitcoin" height="30" align="absmiddle">
+  <img src="https://img.shields.io/badge/Bitcoin-F7931A?style=for-the-badge&logo=bitcoin&logoColor=white" alt="Bitcoin" height="30">
   <br>
   <code>1GkpDZDHYov7WZLs54Nv19f2KUoZPcACs2</code>
-  <br>
+</p>
 <p align="center">
   <img src="https://raw.githubusercontent.com/pbzin/pbzin/main/assets/bitcoin-qr.png" width="150" alt="Bitcoin donation QR code">
   <br><br>
