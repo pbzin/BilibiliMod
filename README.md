@@ -33,8 +33,33 @@ It forces Bilibili to treat the app as the CN version/region and unlocks hidden 
 - The module does not store a persistent translation cache.
 - Avoid scoping Bilibili into another module that hooks the same behavior, otherwise effects may be duplicated.
 
-## Donate
 
-I do not have a stable income and I build this module for fun in my free time. If it helps you, any support keeps the project alive and means a lot.
+### 💖 Support My Work
 
-[![Donate](https://img.shields.io/badge/Donate-Support%20the%20project-ff69b4?style=for-the-badge)](https://github.com/pbzin)
+<p align="center">
+  <a href="https://buymeacoffee.com/pbzin">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="38" align="absmiddle">
+  </a>
+  <a href="https://github.com/sponsors/pbzin">
+    <img src="https://img.shields.io/badge/Sponsor-💖-ea4aaa?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="GitHub Sponsors" height="38" align="absmiddle">
+  </a>
+  <br><br>
+  <img src="https://img.shields.io/badge/Pix-⚡-32BCAD?style=for-the-badge&logo=pix&logoColor=white" alt="Pix" height="30" align="absmiddle">
+  <img src="assets/brasil-badge.png" alt="Brasil" height="30" align="absmiddle">
+  <br>
+  <code>5198a8b3-6b89-4475-aec1-5adcfcfd12cf</code>
+  <br><br>
+  <img src="https://img.shields.io/badge/Bitcoin-F7931A?style=for-the-badge&logo=bitcoin&logoColor=white" alt="Bitcoin" height="30" align="absmiddle">
+  <br>
+  <code>1GkpDZDHYov7WZLs54Nv19f2KUoZPcACs2</code>
+  <br>
+  <img src="assets/bitcoin-qr.png" width="150" alt="Bitcoin donation QR code">
+  <br><br>
+  <img src="https://img.shields.io/badge/Monero-FF6600?style=for-the-badge&logo=monero&logoColor=white" alt="Monero" height="30" align="absmiddle">
+  <br>
+  <code>45YtYmxUeXeFdokKPG1KWtMFLByS8nwmtiJjEiZ9LfbkNaSUCvyWWAx3VmtDKKkxPJFdQLSXxodRWMt7EBu5TmA3Qi9dgwT</code>
+  <br>
+  <img src="assets/monero-qr.png" width="150" alt="Monero donation QR code">
+</p>
+
+---
