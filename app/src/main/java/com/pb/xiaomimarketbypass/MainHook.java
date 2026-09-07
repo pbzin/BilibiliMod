@@ -717,18 +717,15 @@ public class MainHook implements IXposedHookLoadPackage {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) {
                     String region = (String) param.args[0];
-                    if (!isBilibiliChinaRegion(region)) {
+                    if (!"CN".equals(region)) {
                         param.args[0] = "CN";
+                        log("normalized Bilibili " + methodName + " from " + region + " to CN");
                     }
                 }
             });
         } catch (Throwable t) {
             log("Bilibili " + methodName + " hook failed", t);
         }
-    }
-
-    private static boolean isBilibiliChinaRegion(String region) {
-        return "CN".equals(region) || "HK".equals(region) || "TW".equals(region) || "MO".equals(region);
     }
 
     private static void appendModuleApkToTargetClassLoader(ClassLoader targetClassLoader, Context context) {

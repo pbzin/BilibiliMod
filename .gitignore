@@ -12,3 +12,4 @@ capture_*.png
 *.apk
 log.txt
 first_msg.txt
+app/release/
