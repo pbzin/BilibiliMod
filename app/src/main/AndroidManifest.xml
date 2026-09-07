@@ -9,7 +9,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.pb.xiaomimarketbypass.MainActivity"
+            android:name="com.pb.bilibilimod.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +26,9 @@
         <meta-data
             android:name="xposedminversion"
             android:value="93" />
+        <meta-data
+            android:name="xposedscope"
+            android:value="tv.danmaku.bili" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.pb.xiaomimarketbypass;
+package com.pb.bilibilimod;
 
 import android.app.Activity;
 import android.content.Intent;
