@@ -1,8 +1,8 @@
-[![Repo Views](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fpbzin%2FBilibiliMod&label=repo%20views&countColor=%230e75b6&style=flat)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2Fpbzin%2FBilibiliMod)
-[![Repo Views LSPosed](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FXposed-Modules-Repo%2Fcom.pb.bilibilimod&label=repo%20views%20lsposed&countColor=%230e75b6&style=flat)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2FXposed-Modules-Repo%2Fcom.pb.bilibilimod)
+[![Repo Views](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fpbzin%2FBilibiliMod&label=repo%20views&countColor=%230e75b6&style=flat)](https://github.com/pbzin/BilibiliMod)
+[![Repo Views LSPosed](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FXposed-Modules-Repo%2Fcom.pb.bilibilimod&label=repo%20views%20lsposed&countColor=%230e75b6&style=flat)](https://github.com/Xposed-Modules-Repo/com.pb.bilibilimod)
 
-![Downloads](https://img.shields.io/github/downloads/pbzin/BilibiliMod/total?style=flat&color=0e75b6&label=downloads)
-![Downloads LSPosed](https://img.shields.io/github/downloads/Xposed-Modules-Repo/com.pb.bilibilimod/total?style=flat&color=0e75b6&label=downloads%20lsposed)
+[![Downloads](https://img.shields.io/github/downloads/pbzin/BilibiliMod/total?style=flat&color=0e75b6&label=downloads)](https://github.com/pbzin/BilibiliMod)
+[![Downloads LSPosed](https://img.shields.io/github/downloads/Xposed-Modules-Repo/com.pb.bilibilimod/total?style=flat&color=0e75b6&label=downloads%20lsposed)](https://github.com/Xposed-Modules-Repo/com.pb.bilibilimod)
 
 # BiliBiliMod
 
